@@ -8,7 +8,8 @@ export const profile = {
     github: "https://github.com", // TODO: replace with actual profile
     linkedin: "https://www.linkedin.com/in/mohamed-elsawy-58a33b148/"
   },
-  resumeUrl: "/MohamedElsawyCV.pdf",
+  // Ensure correct path on GitHub Pages subpath
+  resumeUrl: `${import.meta.env.BASE_URL}MohamedElsawyCV.pdf`,
   about: [
     "I'm a passionate software engineer with over 2 years of experience crafting intelligent ERP solutions that bridge the gap between complex data systems and intuitive user experiences. My journey combines the precision of full-stack development with the art of teaching and mentorship at Cairo University.",
     "My expertise lies in building with Frappe and ERPNext, where I've architected everything from AI-powered natural language interfaces to mobile-first sales automation apps. I believe in the power of automation and intelligent systems to transform how businesses operate—making technology accessible even to non-technical users.",

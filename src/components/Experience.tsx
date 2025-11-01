@@ -2,6 +2,9 @@ import { Briefcase, GraduationCap } from "lucide-react";
 import { profile } from "@/data/profile";
 import { Badge } from "@/components/ui/badge";
 
+type Metric = { label: string; value: string };
+type ExperienceItem = (typeof profile.experiences)[number] & { metrics?: Metric[] };
+
 const Experience = () => {
   return (
     <section id="experience" className="py-20 px-6 bg-secondary/30">
@@ -11,7 +14,7 @@ const Experience = () => {
         </h2>
         
         <div className="space-y-8">
-          {profile.experiences.map((exp, index) => {
+          {profile.experiences.map((exp: ExperienceItem, index) => {
             const Icon = exp.icon === "Briefcase" ? Briefcase : GraduationCap;
             return (
               <div 
@@ -38,11 +41,11 @@ const Experience = () => {
                   ))}
                 </ul>
 
-                {Array.isArray((exp as any).metrics) && (exp as any).metrics.length > 0 && (
+                {Array.isArray(exp.metrics) && exp.metrics.length > 0 && (
                   <div className="mt-6">
                     <h4 className="font-semibold mb-2 text-primary">Impact:</h4>
                     <div className="flex flex-wrap gap-2">
-                      {((exp as any).metrics as Array<{label: string; value: string}>).map((m, i) => (
+                      {exp.metrics!.map((m, i) => (
                         <Badge key={i} variant="secondary" className="bg-secondary/80">
                           {m.label}: <span className="font-semibold ml-1">{m.value}</span>
                         </Badge>

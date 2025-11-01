@@ -3,6 +3,9 @@ import { Badge } from "@/components/ui/badge";
 import { Brain, Smartphone, DollarSign, Package, Zap } from "lucide-react";
 import { profile } from "@/data/profile";
 
+type Metric = { label: string; value: string };
+type ProjectItem = (typeof profile.projects)[number] & { metrics?: Metric[] };
+
 const Projects = () => {
   return (
     <section id="projects" className="py-20 px-6">
@@ -15,7 +18,7 @@ const Projects = () => {
         </p>
         
         <div className="grid md:grid-cols-2 gap-6">
-          {profile.projects.map((project, index) => {
+          {profile.projects.map((project: ProjectItem, index) => {
             const Icon =
               project.icon === "Brain"
                 ? Brain
@@ -55,11 +58,11 @@ const Projects = () => {
                     </ul>
                   </div>
 
-                  {Array.isArray((project as any).metrics) && (project as any).metrics.length > 0 && (
+                  {Array.isArray(project.metrics) && project.metrics.length > 0 && (
                     <div>
                       <h4 className="font-semibold mb-2 text-primary">Impact:</h4>
                       <div className="flex flex-wrap gap-2">
-                        {((project as any).metrics as Array<{label: string; value: string}>).map((m, i) => (
+                        {project.metrics!.map((m, i) => (
                           <Badge key={i} variant="secondary" className="bg-secondary/80">
                             {m.label}: <span className="font-semibold ml-1">{m.value}</span>
                           </Badge>

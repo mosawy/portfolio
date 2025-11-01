@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 
 const Resume = () => {
-  const resumeUrl = "/MohamedElsawyCV.pdf";
+  const resumeUrl = import.meta.env.BASE_URL + "MohamedElsawyCV.pdf";
   return (
     <div className="min-h-screen bg-background p-6">
       <div className="max-w-5xl mx-auto space-y-4">
