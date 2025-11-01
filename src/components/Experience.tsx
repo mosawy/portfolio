@@ -1,35 +1,6 @@
 import { Briefcase, GraduationCap } from "lucide-react";
-
-const experiences = [
-  {
-    company: "Golive-Solutions",
-    location: "Cairo, Egypt",
-    role: "Software Engineer",
-    period: "2023 - Present",
-    icon: Briefcase,
-    highlights: [
-      "Developed AI-powered natural language interface enabling non-technical users to query ERPNext data intuitively",
-      "Architected and deployed multiple Frappe apps for sales automation, production cost management, and shipment tracking",
-      "Implemented enterprise-grade security with role-based access control and comprehensive audit logging",
-      "Created automated workflows and scheduled jobs that improved operational efficiency across multiple client implementations",
-      "Built responsive frontend solutions ensuring seamless cross-device compatibility"
-    ]
-  },
-  {
-    company: "Cairo University Faculty of Science",
-    location: "Cairo, Egypt",
-    role: "Teaching Assistant",
-    period: "2024 - Present",
-    icon: GraduationCap,
-    highlights: [
-      "Teaching programming fundamentals and software engineering concepts to undergraduate students",
-      "Mentoring students in modern development practices and problem-solving methodologies",
-      "Developing course materials and hands-on coding exercises",
-      "Fostering a collaborative learning environment that emphasizes practical application",
-      "Supporting students' growth in computer science and preparing them for industry careers"
-    ]
-  }
-];
+import { profile } from "@/data/profile";
+import { Badge } from "@/components/ui/badge";
 
 const Experience = () => {
   return (
@@ -40,8 +11,8 @@ const Experience = () => {
         </h2>
         
         <div className="space-y-8">
-          {experiences.map((exp, index) => {
-            const Icon = exp.icon;
+          {profile.experiences.map((exp, index) => {
+            const Icon = exp.icon === "Briefcase" ? Briefcase : GraduationCap;
             return (
               <div 
                 key={index}
@@ -66,6 +37,19 @@ const Experience = () => {
                     </li>
                   ))}
                 </ul>
+
+                {Array.isArray((exp as any).metrics) && (exp as any).metrics.length > 0 && (
+                  <div className="mt-6">
+                    <h4 className="font-semibold mb-2 text-primary">Impact:</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {((exp as any).metrics as Array<{label: string; value: string}>).map((m, i) => (
+                        <Badge key={i} variant="secondary" className="bg-secondary/80">
+                          {m.label}: <span className="font-semibold ml-1">{m.value}</span>
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             );
           })}

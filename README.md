@@ -1,73 +1,41 @@
-# Welcome to your Lovable project
+# Mohamed Elsawy Portfolio (Vite + React + TypeScript)
 
-## Project info
+Live (after GH Pages deploy): https://mosawy.github.io/portfolio/
 
-**URL**: https://lovable.dev/projects/d987c712-a099-4146-9d31-341a4c40e338
+## Local development
 
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/d987c712-a099-4146-9d31-341a4c40e338) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```bash
+npm ci
+npm start
 ```
 
-**Edit a file directly in GitHub**
+## Production build
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+npm run build
+npm run preview
+```
 
-**Use GitHub Codespaces**
+## Deploy to GitHub Pages
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+This repo includes a GitHub Actions workflow that builds and deploys the site to GitHub Pages on every push to `main`.
 
-## What technologies are used for this project?
+1. Ensure the code is pushed to the repo `mosawy/portfolio`.
+2. In GitHub, go to Settings → Pages and ensure the source is set to "GitHub Actions" (the workflow will configure the rest).
+3. The action `.github/workflows/deploy.yml` builds the app and publishes `dist/`.
+4. Your site will be available at: `https://mosawy.github.io/portfolio/`.
 
-This project is built with:
+If you rename the repo or use a different path, update:
+- Vite base in `vite.config.ts` (production `base: "/<repo-name>/"`).
+- React Router `basename={import.meta.env.BASE_URL}` in `src/App.tsx`.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Tech stack
 
-## How can I deploy this project?
+- Vite, React, TypeScript
+- Tailwind CSS, shadcn/ui
+- React Router, TanStack Query
 
-Simply open [Lovable](https://lovable.dev/projects/d987c712-a099-4146-9d31-341a4c40e338) and click on Share -> Publish.
+## Notes
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- The Vite base is set to `/portfolio/` in production, so assets and routes work on GitHub Pages.
+- The router uses `import.meta.env.BASE_URL` so navigation works under the subpath.

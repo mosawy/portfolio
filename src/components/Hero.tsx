@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Mail, FileText } from "lucide-react";
+import { profile } from "@/data/profile";
 
 const Hero = () => {
   const scrollToSection = (id: string) => {
@@ -44,6 +45,12 @@ const Hero = () => {
           >
             <Mail className="mr-2 h-5 w-5" />
             Contact Me
+          </Button>
+          <Button size="lg" variant="outline" className="border-primary/50 hover:bg-primary/10" asChild>
+            <a href={profile.resumeUrl} target="_blank" rel="noopener noreferrer">
+              <FileText className="mr-2 h-5 w-5" />
+              Download CV
+            </a>
           </Button>
         </div>
 

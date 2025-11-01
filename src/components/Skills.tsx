@@ -1,28 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Code2, Database, Wrench, Sparkles } from "lucide-react";
-
-const skillCategories = [
-  {
-    title: "Programming Languages",
-    icon: Code2,
-    skills: ["Python", "JavaScript", "SQL"]
-  },
-  {
-    title: "Frameworks & Platforms",
-    icon: Database,
-    skills: ["Frappe", "ERPNext", "React"]
-  },
-  {
-    title: "Tools & DevOps",
-    icon: Wrench,
-    skills: ["Git", "Linux", "REST APIs"]
-  },
-  {
-    title: "Specialized Skills",
-    icon: Sparkles,
-    skills: ["AI/NLP", "Data Visualization", "Security (RBAC)", "Report Generation", "Automation"]
-  }
-];
+import { profile } from "@/data/profile";
 
 const Skills = () => {
   return (
@@ -33,8 +11,15 @@ const Skills = () => {
         </h2>
         
         <div className="grid md:grid-cols-2 gap-6">
-          {skillCategories.map((category, index) => {
-            const Icon = category.icon;
+          {profile.skills.map((category, index) => {
+            const Icon =
+              category.icon === "Code2"
+                ? Code2
+                : category.icon === "Database"
+                ? Database
+                : category.icon === "Wrench"
+                ? Wrench
+                : Sparkles;
             return (
               <div 
                 key={index}
